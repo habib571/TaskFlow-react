@@ -1,8 +1,9 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from './contexts/AuthContext'; 
-import Register from './features/authentication/pages/RegisterPage';
-
+import Register from './features/authentication/pages/RegisterPage'; 
+import Login from './features/authentication/pages/LoginPage'; 
+import Layout from './features/authentication/components/Layout';
 
 const App: React.FC = () => {
   const { isAuthenticated, loading } = useAuth();
@@ -18,7 +19,8 @@ const App: React.FC = () => {
   }
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/register" replace />} />
+      <Route path="/" element={isAuthenticated ? <Layout /> : <Navigate to="/login" replace />} />
+      <Route path="/login" element={!isAuthenticated ? <Login /> : <Navigate to="/" replace />} />
       <Route path="/register" element={!isAuthenticated ? <Register /> : <Navigate to="/" replace />} />
     </Routes>
   );
