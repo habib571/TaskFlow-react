@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import { FolderKanban } from 'lucide-react'; 
+import { FolderKanban } from 'lucide-react';
 import { useAuth } from '../../../contexts/AuthContext';
+import { Spinner } from 'react-bootstrap';
 
 
 const RegisterForm = () => {
@@ -60,8 +61,27 @@ const RegisterForm = () => {
             <Form.Control type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
           </Form.Group>
 
-          <Button variant="primary" type="submit" className="w-100 py-2" disabled={loading}>
-            {loading ? 'Creating account...' : 'Sign Up'}
+          <Button
+            variant="primary"
+            type="submit"
+            className="w-100 py-2 d-flex justify-content-center align-items-center"
+            disabled={loading}
+          >
+            {loading ? (
+              <>
+                <Spinner
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                  className="me-2"
+                />
+                Signing in...
+              </>
+            ) : (
+              'Sign In'
+            )}
           </Button>
 
           <div className="text-center mt-4">
@@ -73,6 +93,6 @@ const RegisterForm = () => {
       </Card.Body>
     </Card>
   );
-};  
+};
 
 export default RegisterForm;
