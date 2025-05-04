@@ -3,7 +3,8 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from './contexts/AuthContext'; 
 import Register from './features/authentication/pages/RegisterPage'; 
 import Login from './features/authentication/pages/LoginPage'; 
-import Layout from './features/authentication/components/Layout';
+import Layout from './features/authentication/components/Layout'; 
+import Dashboard from './features/dashboard/pages/Dashboard';
 
 const App: React.FC = () => {
   const { isAuthenticated, loading } = useAuth();
@@ -17,11 +18,16 @@ const App: React.FC = () => {
       </div>
     );
   }
+ 
   return (
     <Routes>
-      <Route path="/" element={isAuthenticated ? <Layout /> : <Navigate to="/login" replace />} />
       <Route path="/login" element={!isAuthenticated ? <Login /> : <Navigate to="/" replace />} />
       <Route path="/register" element={!isAuthenticated ? <Register /> : <Navigate to="/" replace />} />
+      
+      <Route path="/" element={isAuthenticated ? <Layout /> : <Navigate to="/login" replace />}>
+        <Route index element={<Dashboard />} />
+     
+      </Route>
     </Routes>
   );
 };
