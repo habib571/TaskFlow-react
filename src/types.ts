@@ -1,19 +1,16 @@
-// User types
 export interface User {
     id: string;
     name: string;
     email: string;
-    avatar?: string;
+     imageUrl?: string;
   }
   
-  // Authentication types
   export interface AuthState {
     user: User | null;
     isAuthenticated: boolean;
     loading: boolean;
   }
   
-  // Project types
   export interface Project {
     id: string;
     name: string;
@@ -28,8 +25,7 @@ export interface User {
     role: 'owner' | 'admin' | 'member';
     joinedAt: Date;
   }
-  
-  // Task types
+
   export interface Task {
     id: string;
     projectId: string;
@@ -44,14 +40,12 @@ export interface User {
     completedAt?: Date;
   }
   
-  // Column types for Kanban view
   export interface Column {
     id: string;
     title: string;
     taskIds: string[];
   }
   
-  // Calendar event types
   export interface CalendarEvent {
     id: string;
     projectId: string;
@@ -65,7 +59,6 @@ export interface User {
     meetingLink?: string;
   }
   
-  // Video Call types
   export interface PeerConnection {
     peerId: string;
     stream: MediaStream;
@@ -78,7 +71,6 @@ export interface User {
     isVideoEnabled: boolean;
   }
   
-  // Notification types
   export interface Notification {
     id: string;
     userId: string;
