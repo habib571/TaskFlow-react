@@ -241,7 +241,6 @@ export const ProjectProvider: React.FC<{ children: React.ReactNode }> = ({ child
     
     if (sourceColumnId === status) return; 
     
-    // Update columns
     setColumns(prevColumns => {
       const updatedColumns = { ...prevColumns };
       
